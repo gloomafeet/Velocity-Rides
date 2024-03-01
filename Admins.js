@@ -81,3 +81,6 @@ Admins.prototype.ApproveClientRequest = function(location, time, clientName, car
 Admins.prototype.CreateClientAccount = function(location, time, clientName) {
     //create client account if they don't have one when they first submit a reservation
 }
+
+
+module.export = Admins;
