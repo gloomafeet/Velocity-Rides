@@ -9,6 +9,7 @@ class Cars {
         this.statusC = status;
         this.availabilityC = availability;
     }
+    GetInfo;
     EditType;
     EditLoc;
     EditMile;
@@ -16,6 +17,10 @@ class Cars {
     EditMileCost;
     EditStatus;
     EditAvail;
+}
+
+Cars.prototype.GetInfo = function() {
+    return [this.typeC, this.locationC, this.mileageC, this.dayCostC, this.mileCostC, this.statusC, this.availabilityC]
 }
 
 Cars.prototype.EditType = function(type) {

@@ -1,5 +1,8 @@
 //just making this as a template change anything you want 
-var Admins = require('./Employees')
+
+//trying to import cars and employees class, not working 
+var Employees = require('./Employees')
+var Cars = require('./Cars')
 
 class Admins {
     constructor(username, password, location) {
@@ -23,12 +26,18 @@ class Admins {
     CreateClientAccount;
 }
 
-Admins.prototype.AddCar = function(type, location, mileage, dayCost, mileCost, status, availability) {
-
+Admins.prototype.AddCar = function(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
+    carArray.push(Cars(type, location, mileage, dayCost, mileCost, status, availability));
 }
 
-Admins.prototype.DeleteCar = function(type, location, mileage, dayCost, mileCost, status, availability) {
+Admins.prototype.DeleteCar = function(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
     //not sure how to differentiate between cars 
+    const info = [type, location, mileage, dayCost, mileCost, status, availability];
+    for (let i = 0; i < carArray.length; i++){
+        if(carArray[i].GetInfo == info){
+            delete carArray[i];
+        }
+    }
 }
 
 Admins.prototype.EditCar = function(type, location, mileage, dayCost, mileCost, status, availability) {
