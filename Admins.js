@@ -1,16 +1,17 @@
 //just making this as a template change anything you want 
+var Admins = require('./Employees')
 
 class Admins {
-    constructor() {
+    constructor(username, password, location) {
         //constructor 
-        this.usernameA = "";
-        this.passwordA = "";
-        this.locationA = "";
+        this.usernameA = username; //check in database to ensure username & password are unqiue
+        this.passwordA = password; //this has to go through a hash func before getting here
+        this.locationA = location;
     }
     AddCar;
     DeleteCar;
     EditCar;
-    ViewAllCars;
+    ViewAllCars; //may have to be a function in main as all the classes will use it 
     AddEmployee;
     DeleteEmployee;
     EditEmployee;
@@ -41,10 +42,11 @@ Admins.prototype.ViewAllCars = function() {
 
 Admins.prototype.AddEmployee = function(username, password, location) {
     //if location is not assgined make it default to "not specified"
+    Employees(username, password, location);
 }
 
 Admins.prototype.DeleteEmployee = function(username) {
-
+    //search in firebase for employee then delete that info 
 }
 
 Admins.prototype.EditEmployee = function(username, password, location) {
@@ -52,7 +54,7 @@ Admins.prototype.EditEmployee = function(username, password, location) {
 }
 
 Admins.prototype.AddAdmin = function(username, password, location) {
-
+    Admins(username, password, location);
 }
 
 Admins.prototype.DeleteAdmin = function(username) {
