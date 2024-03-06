@@ -13,15 +13,22 @@ class Employees extends Admins{
 }
 
 //allow employee to only edit their own info
-Admins.prototype.EditEmployeeUsername = function(oldUsername, newUsername, password) {
+Employees.prototype.EditEmployeeUsername = function(oldUsername, newUsername, password) {
     if(password == this.passwordE && oldUsername == this.usernameE){
         this.usernameE = newUsername;
     }
 }
 
-Admins.prototype.EditEmployeePassword = function(Newpassword, Oldpassword) {
-    if(password == this.passwordE){
-        this.usernameE = username;
+Employees.prototype.EditEmployeePassword = function(newPassword, oldPassword, username) {
+    if(oldPassword.equals(this.passwordE) && username.equals(this.usernameE)){
+        this.passwordE = newPassword;
+    }
+}
+
+//edits the location but only admins can use this function!!
+Employees.prototype.EditEmployeeLocation = function(location, username) {
+    if(username.equals(this.usernameE)){
+        this.locationE = location;
     }
 }
 

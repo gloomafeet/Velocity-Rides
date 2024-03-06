@@ -14,7 +14,7 @@ class Admins {
     ViewAllCars; //may have to be a function in main as all the classes will use it 
     AddEmployee;
     DeleteEmployee;
-    EditEmployee;
+    EditEmployeeLocation;
     AddAdmin;
     DeleteAdmin;
     EditAdmins;
@@ -49,8 +49,9 @@ Admins.prototype.DeleteEmployee = function(username) {
     //search in firebase for employee then delete that info 
 }
 
-Admins.prototype.EditEmployee = function(username, password, location) {
-    //if location is not assgined make it default to "not specified"
+Admins.prototype.EditEmployeeLocation = function(username, location) {
+    //find and get the employee with that specific username
+    Employees(location, username);    
 }
 
 Admins.prototype.AddAdmin = function(username, password, location) {
