@@ -31,17 +31,42 @@ Admins.prototype.AddCar = function(carArray, type, location, mileage, dayCost, m
 }
 
 Admins.prototype.DeleteCar = function(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
-    //not sure how to differentiate between cars 
     const info = [type, location, mileage, dayCost, mileCost, status, availability];
     for (let i = 0; i < carArray.length; i++){
         if(carArray[i].GetInfo == info){
             delete carArray[i];
+            break;
         }
     }
 }
 
-Admins.prototype.EditCar = function(type, location, mileage, dayCost, mileCost, status, availability) {
-    //not sure how to differentiate between cars 
+Admins.prototype.EditCar = function(carArray, type, location, mileage, dayCost, mileCost, status, availability, editedElement, newVal) {
+    const info = [type, location, mileage, dayCost, mileCost, status, availability];
+    for (let i = 0; i < carArray.length; i++){
+        if(carArray[i].GetInfo == info){
+            if(editedElement == 'type'){
+                carArray[i].EditType(newVal);
+            }
+            else if(editedElement == 'location'){
+                carArray[i].EditLoc(newVal);
+            }
+            else if(editedElement == 'mileage'){
+                carArray[i].EditMile(newVal);
+            }
+            else if(editedElement == 'dayCost'){
+                carArray[i].EditDayCost(newVal);
+            }
+            else if(editedElement == 'mileCost'){
+                carArray[i].EditMileCost(newVal);
+            }
+            else if(editedElement == 'status'){
+                carArray[i].EditStatus(newVal);
+            }
+            else{
+                carArray[i].EditAvailability(newVal);
+            }
+        }
+    }
 }
 
 Admins.prototype.AddEmployee = function(username, password, location) {
