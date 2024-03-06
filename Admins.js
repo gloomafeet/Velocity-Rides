@@ -11,7 +11,6 @@ class Admins {
     AddCar;
     DeleteCar;
     EditCar;
-    ViewAllCars; //may have to be a function in main as all the classes will use it 
     AddEmployee;
     DeleteEmployee;
     EditEmployeeLocation;
@@ -34,10 +33,6 @@ Admins.prototype.DeleteCar = function(type, location, mileage, dayCost, mileCost
 
 Admins.prototype.EditCar = function(type, location, mileage, dayCost, mileCost, status, availability) {
     //not sure how to differentiate between cars 
-}
-
-Admins.prototype.ViewAllCars = function() {
-    //not sure if this func is needed but just to ensure we remeber this functionality 
 }
 
 Admins.prototype.AddEmployee = function(username, password, location) {
