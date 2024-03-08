@@ -7,29 +7,29 @@ class Employees extends Admins{
         this.passwordE = password; //this has to go through a hash func before getting here
         this.locationE = location;
     }
+    GetEmployeeUsername;
     EditEmployeeUsername;
     EditEmployeePassword;
+    EditEmployeeLocation;
     //inherit other func from admins
+}
+
+Employees.prototype.GetEmployeeUsername = function() {
+    return this.usernameE;
 }
 
 //allow employee to only edit their own info
 Employees.prototype.EditEmployeeUsername = function(oldUsername, newUsername, password) {
-    if(password == this.passwordE && oldUsername == this.usernameE){
-        this.usernameE = newUsername;
-    }
+    this.usernameE = newUsername;
 }
 
 Employees.prototype.EditEmployeePassword = function(newPassword, oldPassword, username) {
-    if(oldPassword.equals(this.passwordE) && username.equals(this.usernameE)){
-        this.passwordE = newPassword;
-    }
+    this.passwordE = newPassword;
 }
 
 //edits the location but only admins can use this function!!
-Employees.prototype.EditEmployeeLocation = function(location, username) {
-    if(username.equals(this.usernameE)){
-        this.locationE = location;
-    }
+Employees.prototype.EditEmployeeLocation = function(location) {
+    this.locationE = location;
 }
 
 module.export = Employees;

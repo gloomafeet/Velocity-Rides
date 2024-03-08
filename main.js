@@ -4,6 +4,7 @@ const usernames = [];
 //use something like bycryt for password encryption
 
 //this will store the currently made accounts to make it easier to fine specific people based on their username
+//remember to pass these into functions; if not return the lists
 const admins = [];
 const employees = [];
 const customers = [];

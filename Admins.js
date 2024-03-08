@@ -3,6 +3,7 @@
 //trying to import cars and employees class, not working 
 var Employees = require('./Employees')
 var Cars = require('./Cars')
+var Customers = require('./Customers')
 
 class Admins {
     constructor(username, password, location) {
@@ -17,9 +18,12 @@ class Admins {
     AddEmployee;
     DeleteEmployee;
     EditEmployeeLocation;
+    GetAdminUsername;
     AddAdmin;
     DeleteAdmin;
-    EditAdmins;
+    EditAdminUsername;
+    EditAdminLocation;
+    EditAdminsPassword;
     ViewReservation;
     ViewUpcomingReservations;
     ApproveClientRequest;
@@ -28,6 +32,7 @@ class Admins {
 
 Admins.prototype.AddCar = function(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
     carArray.push(Cars(type, location, mileage, dayCost, mileCost, status, availability));
+    return carArray; //may not need
 }
 
 Admins.prototype.DeleteCar = function(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
@@ -38,6 +43,7 @@ Admins.prototype.DeleteCar = function(carArray, type, location, mileage, dayCost
             break;
         }
     }
+    return carArray; //may not need
 }
 
 Admins.prototype.EditCar = function(carArray, type, location, mileage, dayCost, mileCost, status, availability, editedElement, newVal) {
@@ -67,32 +73,79 @@ Admins.prototype.EditCar = function(carArray, type, location, mileage, dayCost, 
             }
         }
     }
+    return carArray; //may not need
 }
 
-Admins.prototype.AddEmployee = function(username, password, location) {
-    //if location is not assgined make it default to "not specified"
-    Employees(username, password, location);
+Admins.prototype.AddEmployee = function(employeeArray, username, password, location) {
+    employeeArray.push(Employees(username, password, location));
+    return employeeArray; //may not need
 }
 
-Admins.prototype.DeleteEmployee = function(username) {
-    //search in firebase for employee then delete that info 
+Admins.prototype.DeleteEmployee = function(employeeArray, username) {
+    for(let i = 0; i < employeeArray.length; i++){
+        if(username.equals(employeeArray[i].GetEmployeeUsername)){
+            delete employeeArray[i];
+        }
+    } 
+    return employeeArray; //may not need
 }
 
-Admins.prototype.EditEmployeeLocation = function(username, location) {
-    //find and get the employee with that specific username
-    Employees(location, username);    
+Admins.prototype.EditEmployeeLocation = function(employeeArray, username, location) {
+    for(let i = 0; i < employeeArray.length; i++){
+        if(username.equals(employeeArray[i].GetEmployeeUsername)){
+            employeeArray[i].EditEmployeeLocation(location);
+            break;
+        }
+    }
+    return employeeArray; //may not need
 }
 
-Admins.prototype.AddAdmin = function(username, password, location) {
-    Admins(username, password, location);
+Admins.prototype.GetAdminUsername = function() {
+    return this.usernameA
 }
 
-Admins.prototype.DeleteAdmin = function(username) {
-
+Admins.prototype.AddAdmin = function(adminArray, username, password, location) {
+    adminArray.push(Admins(username, password, location));
+    return adminArray; //may not need
 }
 
-Admins.prototype.EditAdmin = function(username, password, location) {
+Admins.prototype.DeleteAdmin = function(adminArray, username) {
+    for(let i = 0; i < adminArray.length; i++){
+        if(username.equals(adminArray[i].GetAdminUsername)){
+            delete adminArray[i];
+        }
+    } 
+    return adminArray; //may not need
+}
 
+Admins.prototype.EditAdminUsername = function(adminArray, oldUsername, newUsername) {
+    for(let i = 0; i < adminArray.length; i++){
+        if(oldUsername.equals(adminArray[i].GetAdminUsername)){
+            adminArray[i].usernameA = newUsername;
+            break;
+        }
+    }
+    return employeeArray; //may not need
+}
+
+Admins.prototype.EditAdminPassword = function(adminArray, username, password) {
+    for(let i = 0; i < adminArray.length; i++){
+        if(username.equals(adminArray[i].GetAdminUsername)){
+            adminArray[i].passwordA = password;
+            break;
+        }
+    }
+    return employeeArray; //may not need
+}
+
+Admins.prototype.EditAdminLocation = function(username, location) {
+    for(let i = 0; i < adminArray.length; i++){
+        if(username.equals(adminArray[i].GetAdminUsername)){
+            adminArray[i].locationA = location;
+            break;
+        }
+    }
+    return employeeArray; //may not need
 }
 
 Admins.prototype.ViewReservation = function(location, time, clientName) {
@@ -110,8 +163,10 @@ Admins.prototype.ApproveClientRequest = function(location, time, clientName, car
     //if client does not already have an account create one using CreateClientAccount w/ email and password
 }
 
-Admins.prototype.CreateClientAccount = function(location, time, clientName) {
+Admins.prototype.CreateClientAccount = function(customerArray, clientName, username, password) {
     //create client account if they don't have one when they first submit a reservation
+    customerArray.push(Customers(username, password, clientName));
+    return customerArray;
 }
 
 
