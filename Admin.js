@@ -1,10 +1,15 @@
 //just making this as a template change anything you want 
 
 //trying to import cars and employees class, not working 
-var Employee = require('./Employee')
-var Car = require('./Car')
-var Customer = require('./Customer')
-var User = require('./User')
+import Employee from './Employee'
+import Car from './Car'
+import Customer from './Customer'
+import User from './User'
+
+// var Employee = require('./Employee')
+// var Car = require('./Car')
+// var Customer = require('./Customer')
+// var User = require('./User')
 
 class Admin extends Employee{
     constructor(username, password, name, location) {

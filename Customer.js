@@ -1,4 +1,6 @@
-var User = require('./User')
+import User from './User'
+
+//var User = require('./User')
 
 class Customer extends User{
     constructor(username, password, name) {

@@ -1,6 +1,10 @@
-var User = require('./User')
-var Cars = require('./Car')
-var Customers = require('./Customer')
+import Car from './Car'
+import Customer from './Customer'
+import User from './User'
+
+// var User = require('./User')
+// var Cars = require('./Car')
+// var Customers = require('./Customer')
 
 //inherit User functions (trying to at least)
 
