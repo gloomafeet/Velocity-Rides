@@ -1,37 +1,21 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const cors = require("cors")
-const EmployeeModel = require("./model/Employee")
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const connection = require("./db");
+const userRoutes = require("./routes/users");
+const authRoutes = require("./routes/auth");
 
-const app = express()
-app.use(express.json())
-app.use(cors())
+// database connection
+connection();
 
-mongoose.connect("mongodb://127.0.0.1:27017/employee");
+// middlewares
+app.use(express.json());
+app.use(cors());
 
-app.post("/login", (req, res) => {
-    const {email, password} = req.body;
-    EmployeeModel.findOne({email : email})
-    .then(user => {
-        if(user) {
-            if(user.password === password){
-                res.json("Success")
-            }else{
-                res.json("The password is incorrect")
-            }
-        }else{
-            res.json("No record existed")
-        }
-    })
-})
+// routes
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
-app.post("/register", (req, res) => {
-    EmployeeModel.create(req.body)
-    .then(employees => res.json(employees))
-    .catch(err => res.json(err))
-})
-
-
-app.listen(3001, () => {
-    console.log("server is running")
-})
+const port = process.env.PORT || 8080;
+app.listen(port, console.log(`Listening on port ${port}...`));
