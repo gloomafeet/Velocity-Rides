@@ -33,10 +33,16 @@ Employee.prototype.getEmployeeUsername = function() {
 
 //allow employee to only edit their own info
 Employee.prototype.editEmployeeUsername = function(oldUsername, newUsername, password) {
+    if(password == this.passwordE && oldUsername == this.usernameE){
+        this.usernameE = newUsername;
+    }
     this.username = newUsername;
 }
 
 Employee.prototype.editEmployeePassword = function(newPassword, oldPassword, username) {
+    if(oldPassword.equals(this.passwordE) && username.equals(this.usernameE)){
+        this.passwordE = newPassword;
+    }
     this.password = newPassword;
 }
 
@@ -91,11 +97,12 @@ Employee.prototype.editCar = function(carArray, type, location, mileage, dayCost
     return carArray; //may not need
 }
 
-Employee.prototype.viewReservation = function(location, time, clientName) {
+Employee.prototype.viewReservation = function(carAvailabilityMap, location, time, clientName) {
     //sees specific reservation
+
 }
 
-Employee.prototype.viewUpcomingReservation = function(location, time) {
+Employee.prototype.viewUpcomingReservation = function(carAvailabilityMap, location, time) {
     //sees all upcoming reservations
     //time = current date?
 }
