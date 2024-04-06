@@ -1,4 +1,4 @@
-class Cars {
+class Car {
     constructor(type, location, mileage, dayCost, mileCost, status, availability) {
         //constructor 
         this.typeC = type;
@@ -22,40 +22,40 @@ class Cars {
     GetAvail;
 }
 
-Cars.prototype.GetInfo = function() {
+Car.prototype.GetInfo = function() {
     return [this.typeC, this.locationC, this.mileageC, this.dayCostC, this.mileCostC, this.statusC, this.availabilityC]
 }
 
-Cars.prototype.EditType = function(type) {
+Car.prototype.EditType = function(type) {
     this.typeC = type;
 }
 
-Cars.prototype.EditLoc = function(location) {
+Car.prototype.EditLoc = function(location) {
     this.locationC = location;
 }
 
-Cars.prototype.EditMile = function(miles) {
+Car.prototype.EditMile = function(miles) {
     this.mileageC = miles;
 }
 
-Cars.prototype.EditDayCost = function(dayCost) {
+Car.prototype.EditDayCost = function(dayCost) {
     this.dayCostCC = dayCost;
 }
 
-Cars.prototype.EditMileCost = function(mileCost) {
+Car.prototype.EditMileCost = function(mileCost) {
     this.mileCostC = mileCost;
 }
 
-Cars.prototype.EditStatus = function(status) {
+Car.prototype.EditStatus = function(status) {
     this.statusC = status;
 }
 
-Cars.prototype.EditAvail = function(availability) {
+Car.prototype.EditAvail = function(availability) {
     this.availabilityC = availability;
 }
 
 //check the availability of this car 
-Cars.prototype.CheckAvail = function(startDate, endDate, startTime, endTime) {
+Car.prototype.CheckAvail = function(startDate, endDate, startTime, endTime) {
     startDate = new Date(startDate);
     endDate = new Date(endDate);
 
@@ -64,7 +64,7 @@ Cars.prototype.CheckAvail = function(startDate, endDate, startTime, endTime) {
 
 //add a reservation for this car 
 //ensure the startTime and endTime are in military time 
-Cars.prototype.AddReserve = function(startDate, endDate, startTime, endTime) {
+Car.prototype.AddReserve = function(startDate, endDate, startTime, endTime) {
     startDate = new Date(startDate);
     endDate = new Date(endDate);
 
@@ -72,16 +72,19 @@ Cars.prototype.AddReserve = function(startDate, endDate, startTime, endTime) {
     if(startDate.toString() == endDate.toString()){
         let existingPeriods = availabilityC.get(startDate) || [];
         existingPeriods.push([startTime, endTime]);
+        existingPeriods.sort();
         availabilityC.set(startDate, existingPeriods);
     }
     else{
         //reserving the startDate, endDate, and the in between days 
         let existingPeriods = availabilityC.get(startDate) || [];
         existingPeriods.push([startTime, '23:59']);
+        existingPeriods.sort();
         availabilityC.set(startDate, existingPeriods);
 
         existingPeriods = availabilityC.get(endDate) || [];
         existingPeriods.push(['00:00', endTime]);
+        existingPeriods.sort();
         availabilityC.set(endDate, existingPeriods);
     
         //make temp 1 day ahead of startDate 
@@ -98,7 +101,7 @@ Cars.prototype.AddReserve = function(startDate, endDate, startTime, endTime) {
     }
 }
 
-Cars.prototype.GetAvail = function() {
+Car.prototype.GetAvail = function() {
     return this.availabilityC;
 }
 
