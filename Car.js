@@ -19,6 +19,7 @@ class Car {
     EditAvail;
     CheckAvail;
     AddReserve;
+    RemoveReserve;
     GetAvail;
 }
 
@@ -59,7 +60,38 @@ Car.prototype.CheckAvail = function(startDate, endDate, startTime, endTime) {
     startDate = new Date(startDate);
     endDate = new Date(endDate);
 
-    
+    //ensure endTime > startTime when inputted in UI
+    if(startDate.toString() == endDate.toString()){
+        for(let j = 1; j < availabilityC.get(startDate).length; j++){
+            let temp = j;
+            temp--;
+            if(startTime > availabilityC.get(startDate)[temp][1] && endTime < availabilityC.get(startDate)[j][0] ){
+                return true;
+            }
+        }
+        if(startTime > availabilityC.get(startDate)[availabilityC.get(startDate).length - 1][1] || endTime < availabilityC.get(startDate)[0][0]){
+            return true;
+        }
+        return false;
+    }
+    else{
+        //checking if the start and end time are free for the start/end dates 
+        if(startTime < availabilityC.get(startDate)[availabilityC.get(startDate).length - 1][1] && endTime > availabilityC.get(endDate)[0][0]){
+            return false;
+        }
+        
+        let temp = new Date(startDate)
+        temp.setDate(startDate.getDate() + 1)
+        //checking the in between dates to ensure they are fully free
+        for(let i = temp; i < endDate; i.setDate(i.getDate() + 1)){
+            availabilityC.forEach((value, key) => {
+                if(key == i.toString() && value.length != 0){
+                    return false;
+                }
+            });
+        }
+        return true;
+    }
 }
 
 //add a reservation for this car 
@@ -90,15 +122,18 @@ Car.prototype.AddReserve = function(startDate, endDate, startTime, endTime) {
         //make temp 1 day ahead of startDate 
         let temp = new Date(startDate)
         temp.setDate(startDate.getDate() + 1)
-        
-        console.log("temp: " + temp)
-    
+            
         for(let i = temp; i < endDate; i.setDate(i.getDate() + 1)){
             existingPeriods = availabilityC.get(i) || [];
             existingPeriods.push(['00:00', '23:59']);
             availabilityC.set(new Date(i), existingPeriods)
         }
     }
+}
+
+//need to find the specific car object before calling this on that object 
+Car.prototype.RemoveReserve = function(startDate, endDate, startTime, endTime) {
+
 }
 
 Car.prototype.GetAvail = function() {
