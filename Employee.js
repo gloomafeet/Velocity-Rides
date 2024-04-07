@@ -33,22 +33,25 @@ Employee.prototype.getEmployeeUsername = function() {
 
 //allow employee to only edit their own info
 Employee.prototype.editEmployeeUsername = function(oldUsername, newUsername, password) {
-    if(password == this.passwordE && oldUsername == this.usernameE){
-        this.usernameE = newUsername;
+    if(password == this.password && oldUsername == this.username){
+        this.username = newUsername;
+        return true;
     }
-    this.username = newUsername;
+    return false;
 }
 
 Employee.prototype.editEmployeePassword = function(newPassword, oldPassword, username) {
     if(oldPassword.equals(this.passwordE) && username.equals(this.usernameE)){
-        this.passwordE = newPassword;
+        this.password = newPassword;
+        return true;
     }
-    this.password = newPassword;
+    return false;
 }
 
 //edits the location but only admins can use this function!!
 Employee.prototype.editEmployeeLocation = function(location) {
     this.location = location;
+    return true;
 }
 
 Employee.prototype.addCar = function(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
