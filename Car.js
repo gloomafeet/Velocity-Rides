@@ -62,27 +62,29 @@ Car.prototype.CheckAvail = function(startDate, endDate, startTime, endTime) {
 
     //ensure endTime > startTime when inputted in UI
     if(startDate.toString() == endDate.toString()){
-        for(let j = 1; j < availabilityC.get(startDate).length; j++){
+        let value = availabilityC.get(startDate.toString());
+        for(let j = 1; j < value.length; j++){
             let temp = j;
             temp--;
-            if(startTime > availabilityC.get(startDate)[temp][1] && endTime < availabilityC.get(startDate)[j][0] ){
+            if(startTime > value[temp][1] && endTime < value[j][0] ){
                 return true;
             }
         }
-        if(startTime > availabilityC.get(startDate)[availabilityC.get(startDate).length - 1][1] || endTime < availabilityC.get(startDate)[0][0]){
+        if(startTime > value[value.length - 1][1] || endTime < value[0][0]){
             return true;
         }
         return false;
     }
     else{
         //checking if the start and end time are free for the start/end dates 
-        if(startTime < availabilityC.get(startDate)[availabilityC.get(startDate).length - 1][1] && endTime > availabilityC.get(endDate)[0][0]){
+        if(startTime < availabilityC.get(startDate.toString())[availabilityC.get(startDate.toString()).length - 1][1] && endTime > availabilityC.get(endDate.toString())[0][0]){
             return false;
         }
         
         let temp = new Date(startDate)
         temp.setDate(startDate.getDate() + 1)
         //checking the in between dates to ensure they are fully free
+        //if not present in map = date is free
         for(let i = temp; i < endDate; i.setDate(i.getDate() + 1)){
             availabilityC.forEach((value, key) => {
                 if(key == i.toString() && value.length != 0){
@@ -102,38 +104,68 @@ Car.prototype.AddReserve = function(startDate, endDate, startTime, endTime) {
 
     //cannot use normal == for date objects 
     if(startDate.toString() == endDate.toString()){
-        let existingPeriods = availabilityC.get(startDate) || [];
+        let existingPeriods = availabilityC.get(startDate.toString()) || [];
         existingPeriods.push([startTime, endTime]);
-        existingPeriods.sort();
-        availabilityC.set(startDate, existingPeriods);
+        existingPeriods.sort()
+        availabilityC.set(startDate.toString(), existingPeriods);
     }
     else{
         //reserving the startDate, endDate, and the in between days 
-        let existingPeriods = availabilityC.get(startDate) || [];
+        let existingPeriods = availabilityC.get(startDate.toString()) || [];
         existingPeriods.push([startTime, '23:59']);
-        existingPeriods.sort();
-        availabilityC.set(startDate, existingPeriods);
+        existingPeriods.sort()
+        availabilityC.set(startDate.toString(), existingPeriods);
 
-        existingPeriods = availabilityC.get(endDate) || [];
+        existingPeriods = availabilityC.get(endDate.toString()) || [];
         existingPeriods.push(['00:00', endTime]);
-        existingPeriods.sort();
-        availabilityC.set(endDate, existingPeriods);
+        existingPeriods.sort()
+        availabilityC.set(endDate.toString(), existingPeriods);
     
         //make temp 1 day ahead of startDate 
         let temp = new Date(startDate)
         temp.setDate(startDate.getDate() + 1)
-            
+        
+    
         for(let i = temp; i < endDate; i.setDate(i.getDate() + 1)){
-            existingPeriods = availabilityC.get(i) || [];
+            existingPeriods = availabilityC.get(i.toString()) || [];
             existingPeriods.push(['00:00', '23:59']);
-            availabilityC.set(new Date(i), existingPeriods)
+            availabilityC.set(new Date(i).toString(), existingPeriods)
         }
     }
 }
 
 //need to find the specific car object before calling this on that object 
 Car.prototype.RemoveReserve = function(startDate, endDate, startTime, endTime) {
+    //ensure endTime > startTime when inputted in UI
+    if(startDate.toString() == endDate1.toString()){
+        let value = availabilityC.get(startDate1.toString())
+        for(let j = 0; j < value.length; j++){
+            if(startTime == value[j][0] && endTime == value[j][1] ){
+                value.splice(j, 1)
+            }
+        }
+    }
+    else{
+        let value = availabilityC.get(startDate1.toString())
+        for(let j = 0; j < value.length; j++){
+            if(startTime == value[j][0] && '23:59' == value[j][1] ){
+                value.splice(j, 1)
+            }
+        }
 
+        value = availabilityC.get(endDate1.toString())
+        for(let j = 0; j < value.length; j++){
+            if('00:00' == value[j][0] && endTime == value[j][1] ){
+                value.splice(j, 1)
+            }
+        }
+
+        let temp = new Date(startDate1)
+        temp.setDate(startDate1.getDate() + 1)
+        for(let i = temp; i < endDate1; i.setDate(i.getDate() + 1)){
+            availabilityC.get(i.toString()).splice(0,1)
+        }
+    }
 }
 
 Car.prototype.GetAvail = function() {
