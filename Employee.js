@@ -97,7 +97,7 @@ Employee.prototype.editCar = function(carArray, type, location, mileage, dayCost
     return carArray; //may not need
 }
 
-Employee.prototype.viewReservation = function(carObj, location, time) {
+Employee.prototype.viewReservation = function(carsArray, startDate, endDate, startTime, endTime) {
     //sees specific reservation
 
 }

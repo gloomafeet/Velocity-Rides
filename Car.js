@@ -98,26 +98,26 @@ Car.prototype.CheckAvail = function(startDate, endDate, startTime, endTime) {
 
 //add a reservation for this car 
 //ensure the startTime and endTime are in military time 
-Car.prototype.AddReserve = function(startDate, endDate, startTime, endTime) {
+Car.prototype.AddReserve = function(startDate, endDate, startTime, endTime, username) {
     startDate = new Date(startDate);
     endDate = new Date(endDate);
 
     //cannot use normal == for date objects 
     if(startDate.toString() == endDate.toString()){
         let existingPeriods = availabilityC.get(startDate.toString()) || [];
-        existingPeriods.push([startTime, endTime]);
+        existingPeriods.push([startTime, endTime, username]);
         existingPeriods.sort()
         availabilityC.set(startDate.toString(), existingPeriods);
     }
     else{
         //reserving the startDate, endDate, and the in between days 
         let existingPeriods = availabilityC.get(startDate.toString()) || [];
-        existingPeriods.push([startTime, '23:59']);
+        existingPeriods.push([startTime, '23:59', username]);
         existingPeriods.sort()
         availabilityC.set(startDate.toString(), existingPeriods);
 
         existingPeriods = availabilityC.get(endDate.toString()) || [];
-        existingPeriods.push(['00:00', endTime]);
+        existingPeriods.push(['00:00', endTime, username]);
         existingPeriods.sort()
         availabilityC.set(endDate.toString(), existingPeriods);
     
@@ -128,7 +128,7 @@ Car.prototype.AddReserve = function(startDate, endDate, startTime, endTime) {
     
         for(let i = temp; i < endDate; i.setDate(i.getDate() + 1)){
             existingPeriods = availabilityC.get(i.toString()) || [];
-            existingPeriods.push(['00:00', '23:59']);
+            existingPeriods.push(['00:00', '23:59', username]);
             availabilityC.set(new Date(i).toString(), existingPeriods)
         }
     }
