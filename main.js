@@ -18,12 +18,3 @@ let customers = [];
 //make list of all the cars on system
 let cars = [];
 
-//since every kind of account needs this function it will be declared in main not the classes
-function ViewAllCars(startDate, endDate, startTime, endTime){
-    let avail_cars = [];
-    for(let i = 0; i < cars.length; i++){
-        if(cars[i].CheckAvail(startDate, endDate, startTime, endTime)){
-            avail_cars.push(cars[i]);
-        }
-    }
-}
