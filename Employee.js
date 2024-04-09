@@ -21,8 +21,7 @@ class Employee extends User{
     addCar;
     deleteCar;
     editCar;
-    viewReservation;
-    viewUpcomingReservations;
+    viewReservations;
     addReservation;
     removeReservation;
     checkForClientAccount;
@@ -102,14 +101,10 @@ Employee.prototype.editCar = function(carArray, type, location, mileage, dayCost
     return carArray; //may not need
 }
 
-Employee.prototype.viewReservation = function(carObj, startDate, endDate, startTime, endTime, clientUsername) {
+//view schedule of specific car 
+Employee.prototype.viewReservations = function(carObj) {
     //sees specific reservation
-    carObj.GetAvail().get()
-}
-
-Employee.prototype.viewUpcomingReservation = function(carAvailabilityMap, location, time) {
-    //sees all upcoming reservations
-    //time = current date?
+    return carObj.GetAvail()
 }
 
 //approving clients request online, client has to have an account 
