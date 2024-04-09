@@ -115,30 +115,29 @@ Car.prototype.AddReserve = function(startDate, endDate, startTime, endTime, user
         existingPeriods.push([startTime, '23:59', username]);
         existingPeriods.sort()
         availabilityC.set(startDate.toString(), existingPeriods);
-
-        existingPeriods = availabilityC.get(endDate.toString()) || [];
-        existingPeriods.push(['00:00', endTime, username]);
-        existingPeriods.sort()
-        availabilityC.set(endDate.toString(), existingPeriods);
     
         //make temp 1 day ahead of startDate 
         let temp = new Date(startDate)
         temp.setDate(startDate.getDate() + 1)
         
-    
         for(let i = temp; i < endDate; i.setDate(i.getDate() + 1)){
             existingPeriods = availabilityC.get(i.toString()) || [];
             existingPeriods.push(['00:00', '23:59', username]);
             availabilityC.set(new Date(i).toString(), existingPeriods)
         }
+
+        existingPeriods = availabilityC.get(endDate.toString()) || [];
+        existingPeriods.push(['00:00', endTime, username]);
+        existingPeriods.sort()
+        availabilityC.set(endDate.toString(), existingPeriods);
     }
 }
 
 //need to find the specific car object before calling this on that object 
 Car.prototype.RemoveReserve = function(startDate, endDate, startTime, endTime) {
     //ensure endTime > startTime when inputted in UI
-    if(startDate.toString() == endDate1.toString()){
-        let value = availabilityC.get(startDate1.toString())
+    if(startDate.toString() == endDate.toString()){
+        let value = availabilityC.get(startDate.toString())
         for(let j = 0; j < value.length; j++){
             if(startTime == value[j][0] && endTime == value[j][1] ){
                 value.splice(j, 1)
@@ -146,23 +145,23 @@ Car.prototype.RemoveReserve = function(startDate, endDate, startTime, endTime) {
         }
     }
     else{
-        let value = availabilityC.get(startDate1.toString())
+        let value = availabilityC.get(startDate.toString())
         for(let j = 0; j < value.length; j++){
             if(startTime == value[j][0] && '23:59' == value[j][1] ){
                 value.splice(j, 1)
             }
         }
 
-        value = availabilityC.get(endDate1.toString())
+        value = availabilityC.get(endDate.toString())
         for(let j = 0; j < value.length; j++){
             if('00:00' == value[j][0] && endTime == value[j][1] ){
                 value.splice(j, 1)
             }
         }
 
-        let temp = new Date(startDate1)
-        temp.setDate(startDate1.getDate() + 1)
-        for(let i = temp; i < endDate1; i.setDate(i.getDate() + 1)){
+        let temp = new Date(startDate)
+        temp.setDate(startDate.getDate() + 1)
+        for(let i = temp; i < endDate; i.setDate(i.getDate() + 1)){
             availabilityC.get(i.toString()).splice(0,1)
         }
     }
