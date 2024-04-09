@@ -11,8 +11,3 @@ const customers = [];
 
 //make list of all the cars on system
 const cars = [];
-
-//since every kind of account needs this function it will be declared in main not the classes
-function ViewAllCars(){
-
-}
