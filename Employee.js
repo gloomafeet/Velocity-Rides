@@ -1,6 +1,14 @@
-var User = require('./User')
-var Cars = require('./Car')
+import Car from './Car'
+import Customer from './Customer'
+import User from './User'
+
+// var User = require('./User')
+// var Cars = require('./Car')
+// var Customers = require('./Customer')
+
 //inherit User functions (trying to at least)
+
+//client username is their email 
 
 class Employee extends User{
     constructor(username, password, name, location){
@@ -15,7 +23,9 @@ class Employee extends User{
     editCar;
     viewReservation;
     viewUpcomingReservations;
-    approveClientRequest;
+    addReservation;
+    removeReservation;
+    checkForClientAccount;
     createClientAccount;
 }
 
@@ -25,20 +35,29 @@ Employee.prototype.getEmployeeUsername = function() {
 
 //allow employee to only edit their own info
 Employee.prototype.editEmployeeUsername = function(oldUsername, newUsername, password) {
-    this.username = newUsername;
+    if(password == this.password && oldUsername == this.username){
+        this.username = newUsername;
+        return true;
+    }
+    return false;
 }
 
 Employee.prototype.editEmployeePassword = function(newPassword, oldPassword, username) {
-    this.password = newPassword;
+    if(oldPassword.equals(this.passwordE) && username.equals(this.usernameE)){
+        this.password = newPassword;
+        return true;
+    }
+    return false;
 }
 
 //edits the location but only admins can use this function!!
 Employee.prototype.editEmployeeLocation = function(location) {
     this.location = location;
+    return true;
 }
 
 Employee.prototype.addCar = function(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
-    carArray.push(Cars(type, location, mileage, dayCost, mileCost, status, availability));
+    carArray.push(Car(type, location, mileage, dayCost, mileCost, status, availability));
     return carArray; //may not need
 }
 
@@ -83,24 +102,38 @@ Employee.prototype.editCar = function(carArray, type, location, mileage, dayCost
     return carArray; //may not need
 }
 
-Employee.prototype.viewReservation = function(location, time, clientName) {
+Employee.prototype.viewReservation = function(carObj, startDate, endDate, startTime, endTime, clientUsername) {
     //sees specific reservation
+    carObj.GetAvail().get()
 }
 
-Employee.prototype.viewUpcomingReservation = function(location, time) {
+Employee.prototype.viewUpcomingReservation = function(carAvailabilityMap, location, time) {
     //sees all upcoming reservations
     //time = current date?
 }
 
-//this will not show up on the website
-//only used when they are booking over the phone 
-Employee.prototype.approveClientRequest = function(location, time, clientName, car, clientEmail, password) {
-    //if client does not already have an account create one using CreateClientAccount w/ email and password
+//approving clients request online, client has to have an account 
+//checking avail should be done before request gets here 
+Employee.prototype.addReservation = function(startDate, endDate, startTime, endTime, clientUsername, carObj) {
+    carObj.AddReserve(startDate, endDate, startTime, endTime, clientUsername);
 }
 
-Employee.prototype.createClientAccount = function(customerArray, clientName, username, password) {
+Employee.prototype.removeReservation = function(startDate, endDate, startTime, endTime, carObj) {
+    carObj.RemoveReserve(startDate, endDate, startTime, endTime);
+}
+
+Employee.prototype.checkForClientAccount = function(CustomerArray, clientUsername) {
+    for(let i = 0; i < CustomerArray; i++){
+        if(CustomerArray[i].GetCustUsername == clientUsername){
+            return true;
+        }
+    }
+    return false;
+}
+
+Employee.prototype.createClientAccount = function(customerArray, clientName, clientEmail, password) {
     //create client account if they don't have one when they first submit a reservation
-    customerArray.push(Customers(username, password, clientName));
+    customerArray.push(Customer(clientEmail, password, clientName));
     return customerArray;
 }
 
