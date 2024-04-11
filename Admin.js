@@ -9,6 +9,10 @@ class Admin extends Employee{
         super(username, password, name, location);
     }
 
+    getAdminUsername() {
+        return this.username
+    }
+
     editUsername(user) {
         this.username = user;
     }
@@ -32,25 +36,19 @@ class Admin extends Employee{
 
     deleteEmployee(employeeArray, username) {
         for(let i = 0; i < employeeArray.length; i++){
-            if(username == employeeArray[i].getEmployeeUsername){
-                delete employeeArray[i];
+            if(username == employeeArray[i].getEmployeeUsername()){
+                employeeArray.splice(i, 1);
             }
         } 
-        return employeeArray; //may not need
     }
 
     editEmployeeLocation(employeeArray, username, location) {
         for(let i = 0; i < employeeArray.length; i++){
-            if(username == employeeArray[i].getEmployeeUsername){
+            if(username == employeeArray[i].getEmployeeUsername()){
                 employeeArray[i].editEmployeeLocation(location);
                 break;
             }
         }
-        return employeeArray; //may not need
-    }
-
-    getAdminUsername() {
-        return this.username
     }
 
     addAdmin(adminArray, username, password, name, location) {

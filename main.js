@@ -25,13 +25,17 @@ let newCar = new Car("Mini Cooper", "Texas", 1300, 30.40, 2.45, "no damage", emp
 
 admins.push(x)
 
-x.addAdmin(admins, "usernnn", "pass", "joe", "LOO")
+x.addEmployee(employees, "usern1", "pass1", "joe", "LOO")
 
-console.log(admins)
+console.log(employees)
 
-x.editAdminLocation(admins, "username", "user1")
+x.editEmployeeLocation(employees, "usern1", "Texas")
 
-console.log(admins)
+console.log(employees)
+
+// x.editAdminLocation(admins, "username", "user1")
+
+// console.log(admins)
 
 // cars.push(newCar);
 
