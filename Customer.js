@@ -7,11 +7,9 @@ class Customer extends User{
     }
 
     //Customer methods: rent car, view info, etc
-    GetCustUsername;
-}
-
-Customer.prototype.GetCustUsername = function(){
-    return this.username;
+    GetCustUsername() {
+        return this.username;
+    }
 }
 
 module.exports = Customer;
