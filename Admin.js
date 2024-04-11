@@ -1,99 +1,99 @@
-//just making this as a template change anything you want 
-
-//trying to import cars and employees class, not working 
-var Employee = require('./Employee')
-var Car = require('./Car')
-var Customer = require('./Customer')
-var User = require('./User')
+var Employee = require('./Employee.js')
 
 class Admin extends Employee{
     constructor(username, password, name, location) {
         //constructor 
         super(username, password, name, location);
     }
-    addEmployee;
-    deleteEmployee;
-    editEmployeeLocation;
-    getAdminUsername;
-    addAdmin;
-    deleteAdmin;
-    editAdminUsername;
-    editAdminLocation;
-    editAdminsPassword;
-}
 
-Admin.prototype.addEmployee = function(employeeArray, username, password, location) {
-    employeeArray.push(Employee(username, password, location));
-    return employeeArray; //may not need
-}
+    getAdminUsername() {
+        return this.username
+    }
 
-Admin.prototype.deleteEmployee = function(employeeArray, username) {
-    for(let i = 0; i < employeeArray.length; i++){
-        if(username.equals(employeeArray[i].getEmployeeUsername)){
-            delete employeeArray[i];
-        }
-    } 
-    return employeeArray; //may not need
-}
+    editUsername(user) {
+        this.username = user;
+    }
 
-Admin.prototype.editEmployeeLocation = function(employeeArray, username, location) {
-    for(let i = 0; i < employeeArray.length; i++){
-        if(username.equals(employeeArray[i].getEmployeeUsername)){
-            employeeArray[i].editEmployeeLocation(location);
-            break;
+    editPassword(pass) {
+        this.password = pass;
+    }
+
+    editName(nam) {
+        this.name = nam;
+    }
+
+    editLocation(loco) {
+        this.location = loco;
+    }
+
+    addEmployee(employeeArray, username, password, name, location) {
+        employeeArray.push(new Employee(username, password, name, location));
+    }
+
+    deleteEmployee(employeeArray, username) {
+        for(let i = 0; i < employeeArray.length; i++){
+            if(username == employeeArray[i].getEmployeeUsername()){
+                employeeArray.splice(i, 1);
+            }
+        } 
+    }
+
+    editEmployeeLocation(employeeArray, username, location) {
+        for(let i = 0; i < employeeArray.length; i++){
+            if(username == employeeArray[i].getEmployeeUsername()){
+                employeeArray[i].editEmployeeLocation(location);
+                break;
+            }
         }
     }
-    return employeeArray; //may not need
-}
 
-Admin.prototype.getAdminUsername = function() {
-    return this.username
-}
+    addAdmin(adminArray, username, password, name, location) {
+        adminArray.push(new Admin(username, password, name, location));
+    }
 
-Admin.prototype.addAdmin = function(adminArray, username, password, location) {
-    adminArray.push(Admin(username, password, location));
-    return adminArray; //may not need
-}
+    deleteAdmin(adminArray, username) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(username == adminArray[i].getAdminUsername()){
+                adminArray.splice(i, 1);
+            }
+        } 
+    }
 
-Admin.prototype.deleteAdmin = function(adminArray, username) {
-    for(let i = 0; i < adminArray.length; i++){
-        if(username.equals(adminArray[i].getAdminUsername)){
-            delete adminArray[i];
-        }
-    } 
-    return adminArray; //may not need
-}
-
-Admin.prototype.editAdminUsername = function(adminArray, oldUsername, newUsername) {
-    for(let i = 0; i < adminArray.length; i++){
-        if(oldUsername.equals(adminArray[i].getAdminUsername)){
-            adminArray[i].username = newUsername;
-            break;
+    editAdminUsername(adminArray, oldUsername, newUsername) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(oldUsername == adminArray[i].getAdminUsername()){
+                adminArray[i].editUsername(newUsername);
+                break;
+            }
         }
     }
-    return employeeArray; //may not need
-}
 
-Admin.prototype.editAdminPassword = function(adminArray, username, password) {
-    for(let i = 0; i < adminArray.length; i++){
-        if(username.equals(adminArray[i].getAdminUsername)){
-            adminArray[i].password = password;
-            break;
+    editAdminPassword(adminArray, username, password) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(username == adminArray[i].getAdminUsername()){
+                adminArray[i].editPassword(password);
+                break;
+            }
         }
     }
-    return employeeArray; //may not need
-}
 
-Admin.prototype.editAdminLocation = function(username, location) {
-    for(let i = 0; i < adminArray.length; i++){
-        if(username.equals(adminArray[i].getAdminUsername)){
-            adminArray[i].location = location;
-            break;
+    editAdminName(adminArray, username, name) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(username == adminArray[i].getAdminUsername()){
+                adminArray[i].editName(name);
+                break;
+            }
         }
     }
-    return employeeArray; //may not need
+
+    editAdminLocation(adminArray, username, location) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(username == adminArray[i].getAdminUsername()){
+                adminArray[i].editLocation(location);
+                break;
+            }
+        }
+    }
 }
 
-
-
-module.export = Admin;
+module.exports = Admin;
