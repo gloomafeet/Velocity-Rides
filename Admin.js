@@ -1,4 +1,5 @@
 var Employee = require('./Employee.js')
+var Cars = require('./Car.js')
 
 class Admin extends Employee{
     constructor(username, password, name, location) {
@@ -93,6 +94,10 @@ class Admin extends Employee{
                 break;
             }
         }
+    }
+
+    addCar(carArray, type, location, mileage, dayCost, mileCost, status, availability){
+        carArray.push(new Cars(type, location, mileage, dayCost, mileCost, status, availability));
     }
 }
 

@@ -36,10 +36,6 @@ class Employee extends User{
         return true;
     }
 
-    addCar(carArray, type, location, mileage, dayCost, mileCost, status, availability){
-        carArray.push(new Cars(type, location, mileage, dayCost, mileCost, status, availability));
-    }
-
     deleteCar(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
         let info = [type, location, mileage, dayCost, mileCost, status, availability];
         for (let i = 0; i < carArray.length; i++){
