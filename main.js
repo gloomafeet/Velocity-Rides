@@ -23,16 +23,25 @@ let emptyMap = new Map();
 let x = new Admin("username", "password", "name", "loco");
 let newCar = new Car("Mini Cooper", "Texas", 1300, 30.40, 2.45, "no damage", emptyMap)
 
-admins.push(x);
-cars.push(newCar);
+admins.push(x)
 
-cars[0].AddReserve("2024-03-03", "2024-03-03", "11:20", "14:02", "username")
+x.addAdmin(admins, "usernnn", "pass", "joe", "LOO")
 
-console.log(cars[0])
+console.log(admins)
 
-cars[0].RemoveReserve("2024-03-03", "2024-03-03", "11:20", "14:02")
+x.editAdminLocation(admins, "username", "user1")
 
-console.log(cars[0])
+console.log(admins)
 
-console.log(cars[0].CheckAvail("2024-03-03", "2024-03-03", "11:20", "14:02"))
+// cars.push(newCar);
+
+// cars[0].AddReserve("2024-03-03", "2024-03-03", "11:20", "14:02", "username")
+
+// console.log(cars[0])
+
+// cars[0].RemoveReserve("2024-03-03", "2024-03-03", "11:20", "14:02")
+
+// console.log(cars[0])
+
+// console.log(cars[0].CheckAvail("2024-03-03", "2024-03-03", "11:20", "14:02"))
 

@@ -8,7 +8,7 @@ class Employee extends User{
         super(username, password, name)
         this.location = location;
     }
-    
+
     getEmployeeUsername() {
         return this.username;
     }
@@ -37,7 +37,7 @@ class Employee extends User{
     }
 
     addCar(carArray, type, location, mileage, dayCost, mileCost, status, availability){
-        carArray.push(Cars(type, location, mileage, dayCost, mileCost, status, availability));
+        carArray.push(new Cars(type, location, mileage, dayCost, mileCost, status, availability));
         return carArray; //may not need
     }
 
@@ -108,7 +108,7 @@ class Employee extends User{
 
     createClientAccount(customerArray, clientName, clientEmail, password) {
         //create client account if they don't have one when they first submit a reservation
-        customerArray.push(Customers(clientEmail, password, clientName));
+        customerArray.push(new Customers(clientEmail, password, clientName));
         return customerArray;
     }
 }

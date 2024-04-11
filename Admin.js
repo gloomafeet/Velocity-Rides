@@ -9,14 +9,30 @@ class Admin extends Employee{
         super(username, password, name, location);
     }
 
-    addEmployee(employeeArray, username, password, location) {
-        employeeArray.push(Employee(username, password, location));
+    editUsername(user) {
+        this.username = user;
+    }
+
+    editPassword(pass) {
+        this.password = pass;
+    }
+
+    editName(nam) {
+        this.name = nam;
+    }
+
+    editLocation(loco) {
+        this.location = loco;
+    }
+
+    addEmployee(employeeArray, username, password, name, location) {
+        employeeArray.push(new Employee(username, password, name, location));
         return employeeArray; //may not need
     }
 
     deleteEmployee(employeeArray, username) {
         for(let i = 0; i < employeeArray.length; i++){
-            if(username.equals(employeeArray[i].getEmployeeUsername)){
+            if(username == employeeArray[i].getEmployeeUsername){
                 delete employeeArray[i];
             }
         } 
@@ -25,7 +41,7 @@ class Admin extends Employee{
 
     editEmployeeLocation(employeeArray, username, location) {
         for(let i = 0; i < employeeArray.length; i++){
-            if(username.equals(employeeArray[i].getEmployeeUsername)){
+            if(username == employeeArray[i].getEmployeeUsername){
                 employeeArray[i].editEmployeeLocation(location);
                 break;
             }
@@ -37,47 +53,52 @@ class Admin extends Employee{
         return this.username
     }
 
-    addAdmin(adminArray, username, password, location) {
-        adminArray.push(Admin(username, password, location));
-        return adminArray; //may not need
+    addAdmin(adminArray, username, password, name, location) {
+        adminArray.push(new Admin(username, password, name, location));
     }
 
     deleteAdmin(adminArray, username) {
         for(let i = 0; i < adminArray.length; i++){
-            if(username.equals(adminArray[i].getAdminUsername)){
-                delete adminArray[i];
+            if(username == adminArray[i].getAdminUsername()){
+                adminArray.splice(i, 1);
             }
         } 
-        return adminArray; //may not need
     }
 
     editAdminUsername(adminArray, oldUsername, newUsername) {
         for(let i = 0; i < adminArray.length; i++){
-            if(oldUsername.equals(adminArray[i].getAdminUsername)){
-                adminArray[i].username = newUsername;
+            if(oldUsername == adminArray[i].getAdminUsername()){
+                adminArray[i].editUsername(newUsername);
                 break;
             }
         }
-        return employeeArray; //may not need
     }
 
-    editAdminLocation(adminArray, username, password) {
+    editAdminPassword(adminArray, username, password) {
         for(let i = 0; i < adminArray.length; i++){
-            if(username.equals(adminArray[i].getAdminUsername)){
-                adminArray[i].password = password;
+            if(username == adminArray[i].getAdminUsername()){
+                adminArray[i].editPassword(password);
                 break;
             }
         }
-        return employeeArray; //may not need
     }
-    editAdminsPassword(username, location) {
+
+    editAdminName(adminArray, username, name) {
         for(let i = 0; i < adminArray.length; i++){
-            if(username.equals(adminArray[i].getAdminUsername)){
-                adminArray[i].location = location;
+            if(username == adminArray[i].getAdminUsername()){
+                adminArray[i].editName(name);
                 break;
             }
         }
-        return employeeArray; //may not need
+    }
+
+    editAdminLocation(adminArray, username, location) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(username == adminArray[i].getAdminUsername()){
+                adminArray[i].editLocation(location);
+                break;
+            }
+        }
     }
 }
 
