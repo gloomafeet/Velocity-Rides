@@ -7,6 +7,7 @@ class User{
     }
 
     //Login functionality
+    
     ViewCars(carsArray, startDate, endDate, startTime, endTime) {
         let avail_cars = [];
         for(let i = 0; i < carsArray.length; i++){
