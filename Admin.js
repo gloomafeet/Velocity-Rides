@@ -99,6 +99,16 @@ class Admin extends Employee{
     addCar(carArray, type, location, mileage, dayCost, mileCost, status, availability){
         carArray.push(new Cars(type, location, mileage, dayCost, mileCost, status, availability));
     }
+
+    deleteCar(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
+        let info = [type, location, mileage, dayCost, mileCost, status, availability];
+        for (let i = 0; i < carArray.length; i++){
+            if(JSON.stringify(info) === JSON.stringify(carArray[i].GetInfo())){
+                carArray.splice(i, 1);
+                break;
+            }
+        }
+    }
 }
 
 module.exports = Admin;

@@ -11,7 +11,7 @@ class Car {
     }
 
     GetInfo() {
-        return [this.typeC, this.locationC, this.mileageC, this.dayCostC, this.mileCostC, this.statusC, this.availabilityC]
+        return [this.typeC, this.locationC, this.mileageC, this.dayCostC, this.mileCostC, this.statusC, this.availabilityC];
     }
 
     EditType(type) {

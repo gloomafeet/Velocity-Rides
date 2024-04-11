@@ -24,16 +24,20 @@ let x = new Admin("username", "password", "name", "loco");
 let newCar = new Car("Mini Cooper", "Texas", 1300, 30.40, 2.45, "no damage", emptyMap)
 
 x.addCar(cars, "Hunda", "Florida", 1000, 35.40, 3.45, "no damage", emptyMap)
-
-admins.push(x)
-
-x.addEmployee(employees, "usern1", "pass1", "joe", "LOO")
-
 console.log(cars)
 
-x.editEmployeeLocation(employees, "usern1", "Texas")
+x.deleteCar(cars, "Hunda", "Florida", 1000, 35.40, 3.45, "no damage", emptyMap)
+console.log(cars)
 
-console.log(employees)
+// admins.push(x)
+
+// x.addEmployee(employees, "usern1", "pass1", "joe", "LOO")
+
+// console.log(cars)
+
+// x.editEmployeeLocation(employees, "usern1", "Texas")
+
+// console.log(employees)
 
 // x.editAdminLocation(admins, "username", "user1")
 

@@ -36,16 +36,6 @@ class Employee extends User{
         return true;
     }
 
-    deleteCar(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
-        let info = [type, location, mileage, dayCost, mileCost, status, availability];
-        for (let i = 0; i < carArray.length; i++){
-            if(carArray[i].getInfo == info){
-                carArray.splice(i, 1);
-                break;
-            }
-        }
-    }
-
     editCar(carArray, type, location, mileage, dayCost, mileCost, status, availability, editedElement, newVal) {
         const info = [type, location, mileage, dayCost, mileCost, status, availability];
         for (let i = 0; i < carArray.length; i++){
