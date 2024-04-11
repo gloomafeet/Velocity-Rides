@@ -1,21 +1,14 @@
-//just making this as a template change anything you want 
-
-//trying to import cars and employees class, not working 
-import Employee from './Employee'
-import Car from './Car'
-import Customer from './Customer'
-import User from './User'
-
-// var Employee = require('./Employee')
-// var Car = require('./Car')
-// var Customer = require('./Customer')
-// var User = require('./User')
+var Employee = require('./Employee.js')
+var Car = require('./Car.js')
+var Customer = require('./Customer.js')
+var User = require('./User.js')
 
 class Admin extends Employee{
     constructor(username, password, name, location) {
         //constructor 
         super(username, password, name, location);
     }
+
     addEmployee;
     deleteEmployee;
     editEmployeeLocation;
@@ -101,4 +94,4 @@ Admin.prototype.editAdminLocation = function(username, location) {
 
 
 
-module.export = Admin;
+module.exports = Admin;

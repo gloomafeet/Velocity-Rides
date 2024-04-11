@@ -1,8 +1,8 @@
-import Employee from './Employee'
-import Car from './Car'
-import Customer from './Customer'
-import User from './User'
-import Admin from './Admin'
+var Admin = require('./Admin.js')
+var Employee = require('./Employee.js')
+var Car = require('./Car.js')
+var Customer = require('./Customer.js')
+var User = require('./User.js')
 
 //used to ensure all the usernames for all the accounts are unqiue 
 let usernames = [];
@@ -17,4 +17,22 @@ let customers = [];
 
 //make list of all the cars on system
 let cars = [];
+
+let emptyMap = new Map();
+
+let x = new Admin("username", "password", "name", "loco");
+let newCar = new Car("Mini Cooper", "Texas", 1300, 30.40, 2.45, "no damage", emptyMap)
+
+admins.push(x);
+cars.push(newCar);
+
+cars[0].AddReserve("2024-03-03", "2024-03-03", "11:20", "14:02", "username")
+
+console.log(cars[0])
+
+cars[0].RemoveReserve("2024-03-03", "2024-03-03", "11:20", "14:02")
+
+console.log(cars[0])
+
+console.log(cars[0].CheckAvail("2024-03-03", "2024-03-03", "11:20", "14:02"))
 

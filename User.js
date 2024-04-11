@@ -20,4 +20,4 @@ User.prototype.ViewCars = function(carsArray, startDate, endDate, startTime, end
     return avail_cars;
 }
 
-module.export = User;
+module.exports = User;

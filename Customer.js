@@ -1,6 +1,4 @@
-import User from './User'
-
-//var User = require('./User')
+var User = require('./User.js')
 
 class Customer extends User{
     constructor(username, password, name) {
@@ -16,4 +14,4 @@ Customer.prototype.GetCustUsername = function(){
     return this.username;
 }
 
-module.export = Customer;
+module.exports = Customer;

@@ -1,15 +1,8 @@
-import Car from './Car'
-import Customer from './Customer'
-import User from './User'
-
-// var User = require('./User')
-// var Cars = require('./Car')
-// var Customers = require('./Customer')
-
-//inherit User functions (trying to at least)
+var User = require('./User.js')
+var Cars = require('./Car.js')
+var Customers = require('./Customer.js')
 
 //client username is their email 
-
 class Employee extends User{
     constructor(username, password, name, location){
         super(username, password, name)
@@ -132,4 +125,4 @@ Employee.prototype.createClientAccount = function(customerArray, clientName, cli
     return customerArray;
 }
 
-module.export = Employee;
+module.exports = Employee;
