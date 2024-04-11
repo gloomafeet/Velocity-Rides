@@ -28,7 +28,6 @@ class Admin extends Employee{
 
     addEmployee(employeeArray, username, password, name, location) {
         employeeArray.push(new Employee(username, password, name, location));
-        return employeeArray; //may not need
     }
 
     deleteEmployee(employeeArray, username) {
