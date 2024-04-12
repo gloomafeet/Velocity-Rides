@@ -1,3 +1,9 @@
+import Employee from './Employee'
+import Car from './Car'
+import Customer from './Customer'
+import User from './User'
+import Admin from './Admin'
+
 //used to ensure all the usernames for all the accounts are unqiue 
 const usernames = [];
 
@@ -13,6 +19,6 @@ const customers = [];
 const cars = [];
 
 //since every kind of account needs this function it will be declared in main not the classes
-function ViewAllCars(){
-
+function ViewAllCars(startDate, endDate){
+    
 }
