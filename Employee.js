@@ -36,22 +36,6 @@ class Employee extends User{
         return true;
     }
 
-    addCar(carArray, type, location, mileage, dayCost, mileCost, status, availability){
-        carArray.push(new Cars(type, location, mileage, dayCost, mileCost, status, availability));
-        return carArray; //may not need
-    }
-
-    deleteCar(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
-        const info = [type, location, mileage, dayCost, mileCost, status, availability];
-        for (let i = 0; i < carArray.length; i++){
-            if(carArray[i].getInfo == info){
-                delete carArray[i];
-                break;
-            }
-        }
-        return carArray; //may not need
-    }
-
     editCar(carArray, type, location, mileage, dayCost, mileCost, status, availability, editedElement, newVal) {
         const info = [type, location, mileage, dayCost, mileCost, status, availability];
         for (let i = 0; i < carArray.length; i++){
@@ -79,7 +63,6 @@ class Employee extends User{
                 }
             }
         }
-        return carArray; //may not need
     }
 
     //view schedule of specific car 
@@ -109,7 +92,6 @@ class Employee extends User{
     createClientAccount(customerArray, clientName, clientEmail, password) {
         //create client account if they don't have one when they first submit a reservation
         customerArray.push(new Customers(clientEmail, password, clientName));
-        return customerArray;
     }
 }
 
