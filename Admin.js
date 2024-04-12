@@ -1,4 +1,5 @@
 var Employee = require('./Employee.js')
+var Cars = require('./Car.js')
 
 class Admin extends Employee{
     constructor(username, password, name, location) {
@@ -90,6 +91,20 @@ class Admin extends Employee{
         for(let i = 0; i < adminArray.length; i++){
             if(username == adminArray[i].getAdminUsername()){
                 adminArray[i].editLocation(location);
+                break;
+            }
+        }
+    }
+
+    addCar(carArray, type, location, mileage, dayCost, mileCost, status, availability){
+        carArray.push(new Cars(type, location, mileage, dayCost, mileCost, status, availability));
+    }
+
+    deleteCar(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
+        let info = [type, location, mileage, dayCost, mileCost, status, availability];
+        for (let i = 0; i < carArray.length; i++){
+            if(JSON.stringify(info) === JSON.stringify(carArray[i].GetInfo())){
+                carArray.splice(i, 1);
                 break;
             }
         }
