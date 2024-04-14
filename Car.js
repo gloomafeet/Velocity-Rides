@@ -11,7 +11,7 @@ class Car {
     }
 
     GetInfo() {
-        return [this.typeC, this.locationC, this.mileageC, this.dayCostC, this.mileCostC, this.statusC, this.availabilityC]
+        return [this.typeC, this.locationC, this.mileageC, this.dayCostC, this.mileCostC, this.statusC, this.availabilityC];
     }
 
     EditType(type) {
@@ -45,6 +45,8 @@ class Car {
     //check the availability of this car
     //false == is already booked during this time 
     CheckAvail(startDate, endDate, startTime, endTime) {
+        startDate += "T00:00:00"
+        endDate += "T00:00:00"
         startDate = new Date(startDate);
         endDate = new Date(endDate);
 
@@ -74,8 +76,12 @@ class Car {
             //checking if the start and end time are free for the start/end dates 
             let start = this.availabilityC.get(startDate.toString())
             let end = this.availabilityC.get(endDate.toString())
-            if(start.length != 0 && end.length != 0 && startTime < start[start.length - 1][1] && endTime > end[0][0]){
+
+            if(start != undefined && start.length != 0 && startTime < start[start.length - 1][1]){
                 return false;
+            }
+            if(end != undefined && end.length != 0 && endTime > end[0][0]){
+                return false
             }
             
             let temp = new Date(startDate)
@@ -94,8 +100,11 @@ class Car {
     }
 
     //add a reservation for this car 
-    //ensure the startTime and endTime are in military time 
+    //ensure date is in form "2022-11-02"
+    //ensure time is military 
     AddReserve(startDate, endDate, startTime, endTime, username) {
+        startDate += "T00:00:00"
+        endDate += "T00:00:00"
         startDate = new Date(startDate);
         endDate = new Date(endDate);
 
@@ -132,6 +141,8 @@ class Car {
 
     //need to find the specific car object before calling this on that object 
     RemoveReserve(startDate, endDate, startTime, endTime) {
+        startDate += "T00:00:00"
+        endDate += "T00:00:00"
         startDate = new Date(startDate);
         endDate = new Date(endDate);
 
