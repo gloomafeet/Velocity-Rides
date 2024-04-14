@@ -14,52 +14,57 @@ class Employee extends User{
     }
 
     //allow employee to only edit their own info
-    editEmployeeUsername(oldUsername, newUsername, password) {
-        if(password == this.password && oldUsername == this.username){
-            this.username = newUsername;
-            return true;
-        }
-        return false;
+    editEmployeeUsername(newUsername) {
+        this.username = newUsername;
+        return true;
     }
 
-    editEmployeePassword(newPassword, oldPassword, username) {
-        if(oldPassword.equals(this.passwordE) && username.equals(this.usernameE)){
-            this.password = newPassword;
-            return true;
-        }
-        return false;
+    editEmployeePassword(newPassword) {
+        this.password = newPassword;
+        return true;
     }
 
     //edits the location but only admins can use this function!!
-    editEmployeeLocation(location) {
-        this.location = location;
+    editEmployeeLocation(newLocation) {
+        this.location = newLocation;
+        return true;
+    }
+
+    editEmployeeName(newName) {
+        this.name = newName;
         return true;
     }
 
     editCar(carArray, type, location, mileage, dayCost, mileCost, status, availability, editedElement, newVal) {
         const info = [type, location, mileage, dayCost, mileCost, status, availability];
         for (let i = 0; i < carArray.length; i++){
-            if(carArray[i].getInfo == info){
+            if(JSON.stringify(info) === JSON.stringify(carArray[i].GetInfo())){
                 if(editedElement == 'type'){
-                    carArray[i].editType(newVal);
+                    carArray[i].EditType(newVal);
+                    return true;
                 }
                 else if(editedElement == 'location'){
-                    carArray[i].editLoc(newVal);
+                    carArray[i].EditLoc(newVal);
+                    return true;
                 }
                 else if(editedElement == 'mileage'){
-                    carArray[i].editMile(newVal);
+                    carArray[i].EditMile(newVal);
+                    return true;
                 }
                 else if(editedElement == 'dayCost'){
-                    carArray[i].editDayCost(newVal);
+                    carArray[i].EditDayCost(newVal);
+                    return true;
                 }
                 else if(editedElement == 'mileCost'){
-                    carArray[i].editMileCost(newVal);
+                    carArray[i].EditMileCost(newVal);
+                    return true;
                 }
                 else if(editedElement == 'status'){
-                    carArray[i].editStatus(newVal);
+                    carArray[i].EditStatus(newVal);
+                    return true;
                 }
                 else{
-                    carArray[i].editAvailability(newVal);
+                    return false;
                 }
             }
         }
@@ -81,17 +86,17 @@ class Employee extends User{
     }
 
     checkForClientAccount(CustomerArray, clientUsername) {
-        for(let i = 0; i < CustomerArray; i++){
-            if(CustomerArray[i].GetCustUsername == clientUsername){
+        for(let i = 0; i < CustomerArray.length; i++){
+            if(CustomerArray[i].GetCustUsername() == clientUsername){
                 return true;
             }
         }
         return false;
     }
 
-    createClientAccount(customerArray, clientName, clientEmail, password) {
+    createClientAccount(customerArray, clientName, clientUsername, password) {
         //create client account if they don't have one when they first submit a reservation
-        customerArray.push(new Customers(clientEmail, password, clientName));
+        customerArray.push(new Customers(clientUsername, password, clientName));
     }
 }
 
