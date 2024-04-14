@@ -45,18 +45,28 @@ class Car {
     //check the availability of this car
     //false == is already booked during this time 
     CheckAvail(startDate, endDate, startTime, endTime) {
-        startDate += "T00:00:00"
-        endDate += "T00:00:00"
         startDate = new Date(startDate);
         endDate = new Date(endDate);
+        let [sH, sM] = startTime.split(":").map(Number)
+        let [eH, eM] = endTime.split(":").map(Number)
+        startDate.setUTCHours(sH)
+        startDate.setUTCMinutes(sM)
+        endDate.setUTCHours(eH)
+        endDate.setUTCMinutes(eM)
+
+        if(((endDate.getTime() - startDate.getTime())/ (1000 * 60 * 60)) < 1){
+            return false
+        }
+
+        startDate.setUTCHours(0)
+        startDate.setUTCMinutes(0)
+        endDate.setUTCHours(0)
+        endDate.setUTCMinutes(0)
+
 
         if(startDate.toString() == endDate.toString()){
-            if(startTime > endTime){
-                return false;
-            }
-
             let value = this.availabilityC.get(startDate.toString());
-            if(value.length == 0){
+            if(value == undefined || value.length == 0){
                 return true;
             }
 
@@ -103,6 +113,10 @@ class Car {
     //ensure date is in form "2022-11-02"
     //ensure time is military 
     AddReserve(startDate, endDate, startTime, endTime, username) {
+        if(!this.CheckAvail(startDate, endDate, startTime, endTime)){
+            return false
+        }
+
         startDate += "T00:00:00"
         endDate += "T00:00:00"
         startDate = new Date(startDate);
@@ -137,6 +151,7 @@ class Car {
             existingPeriods.sort()
             this.availabilityC.set(endDate.toString(), existingPeriods);
         }
+        return true;
     }
 
     //need to find the specific car object before calling this on that object 
