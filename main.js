@@ -24,18 +24,19 @@ let x = new Admin("username", "password", "name", "loco");
 let newCar = new Car("Mini Cooper", "Texas", 1300, 30.40, 2.45, "no damage", emptyMap)
 
 cars.push(newCar)
+admins.push(x)
 
 x.addCar(cars, "Hunda", "Florida", 1000, 35.40, 3.45, "no damage", emptyMap)
 
 x.addEmployee(employees, "usern1", "pass1", "joe", "LOO")
 
-employees[0].addReservation("2024-11-01", "2024-11-08", "11:30", "01:40", "user1", cars[0])
-employees[0].addReservation("2024-11-07", "2024-11-08", "11:30", "01:40", "user1", cars[1])
+admins[0].addReservation("2024-11-01", "2024-11-08", "11:30", "01:40", "user1", cars[0]);
+admins[0].addReservation("2024-11-07", "2024-11-08", "11:30", "01:40", "user1", cars[1]);
 
 // console.log(cars[1].CheckAvail("2024-11-01", "2024-11-08", "01:30", "23:45"))
 
 let user = new User("user", "pass", "name")
-let L = user.ViewCars(cars, "2024-11-01", "2024-11-07", "01:30", "11:29")
+let L = admins[0].ViewCars(cars, "2024-11-01", "2024-11-07", "01:30", "11:29")
 
 console.log(L)
 
