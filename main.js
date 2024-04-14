@@ -23,15 +23,62 @@ let emptyMap = new Map();
 let x = new Admin("username", "password", "name", "loco");
 let newCar = new Car("Mini Cooper", "Texas", 1300, 30.40, 2.45, "no damage", emptyMap)
 
-x.addCar(cars, "Hunda", "Florida", 1000, 35.40, 3.45, "no damage", emptyMap)
-console.log(cars)
+cars.push(newCar)
 
-x.deleteCar(cars, "Hunda", "Florida", 1000, 35.40, 3.45, "no damage", emptyMap)
-console.log(cars)
+x.addCar(cars, "Hunda", "Florida", 1000, 35.40, 3.45, "no damage", emptyMap)
+
+x.addEmployee(employees, "usern1", "pass1", "joe", "LOO")
+
+employees[0].addReservation("2024-11-01", "2024-11-08", "11:30", "01:40", "user1", cars[0])
+employees[0].addReservation("2024-11-07", "2024-11-08", "11:30", "01:40", "user1", cars[1])
+
+// console.log(cars[1].CheckAvail("2024-11-01", "2024-11-08", "01:30", "23:45"))
+
+let user = new User("user", "pass", "name")
+let L = user.ViewCars(cars, "2024-11-01", "2024-11-07", "01:30", "11:29")
+
+console.log(L)
+
+// console.log(cars)
+
+// x.deleteCar(cars, "Hunda", "Florida", 1000, 35.40, 3.45, "no damage", emptyMap)
+// console.log(cars)
 
 // admins.push(x)
 
 // x.addEmployee(employees, "usern1", "pass1", "joe", "LOO")
+
+// employees[0].createClientAccount(customers, "cname", "username", "pass")
+
+// employees[0].addReservation("2024-11-01", "2024-11-08", "11:30", "1:40", "user1", cars[0])
+// console.log(cars)
+// employees[0].removeReservation("2024-11-01", "2024-11-08", "11:30", "1:40", cars[0])
+// console.log(cars)
+
+//console.log(cars[0].GetAvail())
+
+// cars[0].GetAvail().forEach((value, key) => {
+//     console.log(key)
+//     console.log(value)
+// });
+
+
+
+// console.log(cars[0].CheckAvail("2024-11-01", "2024-11-08", "11:30", "1:40"))
+
+// cars[0].RemoveReserve("2024-11-01", "2024-11-08", "11:30", "1:40")
+// console.log(cars[0].CheckAvail("2024-11-01", "2024-11-08", "11:30", "1:40"))
+
+
+//employees[0].addReservation("2024-11-01", "2024-11-08", "11:30", "1:40", "userna", cars[0])
+
+
+
+//console.log(employees[0].checkForClientAccount(customers, "username"))
+
+//employees[0].editCar(cars, "Hunda", "Florida", 1000, 35.40, 3.45, "no damage", emptyMap, "avail", emptyMap1)
+
+//console.log(employees[0].viewReservations(cars[0]))
 
 // console.log(cars)
 
