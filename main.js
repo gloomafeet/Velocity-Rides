@@ -1,6 +1,15 @@
 //used to ensure all the usernames for all the accounts are unqiue 
 const usernames = [];
 
+function UnqiueUsername(username) {
+  for(let i = 0; i < usernames.length; i++){
+    if(username == usernames[i]){
+        return false;
+    }
+  }
+  return true;
+}
+
 //use something like bycryt for password encryption
 
 //this will store the currently made accounts to make it easier to fine specific people based on their username
