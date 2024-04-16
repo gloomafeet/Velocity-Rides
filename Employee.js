@@ -7,6 +7,7 @@ class Employee extends User{
     constructor(username, password, name, location){
         super(username, password, name)
         this.location = location;
+        this.userType = "Employee";
     }
 
     getEmployeeUsername() {

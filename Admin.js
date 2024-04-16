@@ -5,6 +5,7 @@ class Admin extends Employee{
     constructor(username, password, name, location) {
         //constructor 
         super(username, password, name, location);
+        this.userType = "Admin";
     }
 
     getAdminUsername() {

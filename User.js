@@ -4,6 +4,11 @@ class User{
         this.username = username; //check in database to ensure username & password are unqiue
         this.password = password; 
         this.name = name;
+        this.userType = "User";
+    }
+
+    getUserType() {
+        return this.userType;
     }
 
     //Login functionality
