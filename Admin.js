@@ -5,7 +5,6 @@ class Admin extends Employee{
     constructor(username, password, name, location) {
         //constructor 
         super(username, password, name, location);
-        this.userType = "Admin";
     }
 
     getAdminUsername() {
@@ -38,6 +37,15 @@ class Admin extends Employee{
                 employeeArray.splice(i, 1);
             }
         } 
+    }
+
+    getEmployee(employeeArray, username){
+        for(let i = 0; i < employeeArray.length; i++){
+            if(username == employeeArray[i].getEmployeeUsername()){
+                return employeeArray[i];
+                break;
+            }
+        }
     }
 
     editEmployeeLocation(employeeArray, username, location) {
@@ -110,7 +118,6 @@ class Admin extends Employee{
             }
         }
     }
-
 }
 
 module.exports = Admin;
