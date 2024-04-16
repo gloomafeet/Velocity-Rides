@@ -63,7 +63,6 @@ class Car {
         endDate.setUTCHours(0)
         endDate.setUTCMinutes(0)
 
-
         if(startDate.toString() == endDate.toString()){
             let value = this.availabilityC.get(startDate.toString());
             if(value == undefined || value.length == 0){

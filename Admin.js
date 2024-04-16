@@ -39,6 +39,15 @@ class Admin extends Employee{
         } 
     }
 
+    getEmployee(employeeArray, username){
+        for(let i = 0; i < employeeArray.length; i++){
+            if(username == employeeArray[i].getEmployeeUsername()){
+                return employeeArray[i];
+                break;
+            }
+        }
+    }
+
     editEmployeeLocation(employeeArray, username, location) {
         for(let i = 0; i < employeeArray.length; i++){
             if(username == employeeArray[i].getEmployeeUsername()){

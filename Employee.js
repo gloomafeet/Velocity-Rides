@@ -35,6 +35,19 @@ class Employee extends User{
         return true;
     }
 
+    searchCarFromLocation(carArray, location){
+        let carAtLocation = [];
+        for(let i = 0; i < carArray.length; i++){
+            let temp = carArray[i].GetInfo();
+            //console.log(temp[1])
+            if(temp[1] == location){
+                //console.log(temp[1])
+                carAtLocation.push(carArray[i])
+            }
+        }
+        return carAtLocation;
+    }
+
     editCar(carArray, type, location, mileage, dayCost, mileCost, status, availability, editedElement, newVal) {
         const info = [type, location, mileage, dayCost, mileCost, status, availability];
         for (let i = 0; i < carArray.length; i++){
