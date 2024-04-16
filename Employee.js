@@ -64,6 +64,42 @@ class Employee extends User{
         //create client account if they don't have one when they first submit a reservation
         customerArray.push(new Customers(clientUsername, password, clientName));
     }
+
+     editCar(carArray, type, location, mileage, dayCost, mileCost, status, availability, editedElement, newVal) {
+        const info = [type, location, mileage, dayCost, mileCost, status, availability];
+        for (let i = 0; i < carArray.length; i++){
+            if(JSON.stringify(info) === JSON.stringify(carArray[i].GetInfo())){
+                if(editedElement == 'type'){
+                    carArray[i].EditType(newVal);
+                    return true;
+                }
+                else if(editedElement == 'location'){
+                    carArray[i].EditLoc(newVal);
+                    return true;
+                }
+                else if(editedElement == 'mileage'){
+                    carArray[i].EditMile(newVal);
+                    return true;
+                }
+                else if(editedElement == 'dayCost'){
+                    carArray[i].EditDayCost(newVal);
+                    return true;
+                }
+                else if(editedElement == 'mileCost'){
+                    carArray[i].EditMileCost(newVal);
+                    return true;
+                }
+                else if(editedElement == 'status'){
+                    carArray[i].EditStatus(newVal);
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+    }
+
 }
 
 module.exports = Employee;
