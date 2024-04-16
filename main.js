@@ -11,3 +11,13 @@ const customers = [];
 
 //make list of all the cars on system
 const cars = [];
+
+//export lists to use in the future 
+export{
+  cars,
+  admins,
+  employees,
+  customers
+}
+//use this to import 
+  //import { foods, drinks } from './example.js';
