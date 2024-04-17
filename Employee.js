@@ -9,29 +9,9 @@ class Employee extends User{
         this.location = location;
     }
 
-    getEmployeeUsername() {
-        return this.username;
-    }
-
-    //allow employee to only edit their own info
-    editEmployeeUsername(newUsername) {
-        this.username = newUsername;
-        return true;
-    }
-
-    editEmployeePassword(newPassword) {
-        this.password = newPassword;
-        return true;
-    }
-
     //edits the location but only admins can use this function!!
-    editEmployeeLocation(newLocation) {
+    editLocation(newLocation) {
         this.location = newLocation;
-        return true;
-    }
-
-    editEmployeeName(newName) {
-        this.name = newName;
         return true;
     }
 
@@ -88,7 +68,7 @@ class Employee extends User{
 
     checkForClientAccount(CustomerArray, clientUsername) {
         for(let i = 0; i < CustomerArray.length; i++){
-            if(CustomerArray[i].GetCustUsername() == clientUsername){
+            if(CustomerArray[i].getUsername() == clientUsername){
                 return true;
             }
         }

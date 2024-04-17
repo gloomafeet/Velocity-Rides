@@ -5,11 +5,6 @@ class Customer extends User{
         //constructor 
         super(username, password, name); //call constructor of the User class
     }
-
-    //Customer methods: rent car, view info, etc
-    GetCustUsername() {
-        return this.username;
-    }
 }
 
 module.exports = Customer;
