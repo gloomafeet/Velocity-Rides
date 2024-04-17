@@ -24,8 +24,11 @@ cars.push(newCar)
 let car = new Car("Mini Cooper", "FL", 1300, 30.40, 2.45, "no damage", emptyMap)
 cars.push(car)
 
+cars[0].AddReserve("2024-03-03", "2024-03-03", "11:20", "14:02", "username")
+
+console.log(cars[0])
 let temp = x.searchCarFromLocation(cars, "Texas")
-console.log(temp)
+//console.log(temp)
 
 
 
@@ -106,9 +109,7 @@ console.log(temp)
 
 // cars.push(newCar);
 
-// cars[0].AddReserve("2024-03-03", "2024-03-03", "11:20", "14:02", "username")
-
-// console.log(cars[0])
+// 
 
 // cars[0].RemoveReserve("2024-03-03", "2024-03-03", "11:20", "14:02")
 

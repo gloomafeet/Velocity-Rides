@@ -110,6 +110,8 @@ class Car {
 
     //add a reservation for this car 
     //ensure date is in form "2022-11-02"
+        //date will then do shown as "Sun Mar 03 2024 00:00:00 GMT-0500 (Eastern Standard Time)" -> the key in the map 
+        //get first 15 characters to just get the date 
     //ensure time is military 
     AddReserve(startDate, endDate, startTime, endTime, username) {
         if(!this.CheckAvail(startDate, endDate, startTime, endTime)){

@@ -39,9 +39,7 @@ class Employee extends User{
         let carAtLocation = [];
         for(let i = 0; i < carArray.length; i++){
             let temp = carArray[i].GetInfo();
-            //console.log(temp[1])
             if(temp[1] == location){
-                //console.log(temp[1])
                 carAtLocation.push(carArray[i])
             }
         }
