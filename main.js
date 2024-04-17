@@ -4,6 +4,33 @@ var Car = require('./Car.js')
 var Customer = require('./Customer.js')
 var User = require('./User.js')
 
+var express = require('express')
+var mongodb = require('mongodb')
+var app = express()
+var PORT = process.env.PORT || 2000
+
+let mongoURI = 'mongodb://localhost:27017/databasePlsWork'
+
+mongodb.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(client => {
+    console.log('Connected to MongoDB');
+    
+    // Further setup can be done here, such as defining routes, starting the server, etc.
+    
+    // Example: define a route
+    app.get('/', (req, res) => {
+      res.send('Hello World!');
+    });
+
+    // Start the server
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch(error => {
+    console.error('Error connecting to MongoDB:', error);
+});
+
 //used to ensure all the usernames for all the accounts are unqiue 
 let usernames = [];
 
@@ -17,17 +44,17 @@ let customers = [];
 //make list of all the cars on system
 let cars = [];
 
-let emptyMap = new Map();
-let x = new Admin("username", "password", "name", "loco");
-let newCar = new Car("Mini Cooper", "Texas", 1300, 30.40, 2.45, "no damage", emptyMap)
-cars.push(newCar)
-let car = new Car("Mini Cooper", "FL", 1300, 30.40, 2.45, "no damage", emptyMap)
-cars.push(car)
+// let emptyMap = new Map();
+// let x = new Admin("username", "password", "name", "loco");
+// let newCar = new Car("Mini Cooper", "Texas", 1300, 30.40, 2.45, "no damage", emptyMap)
+// cars.push(newCar)
+// let car = new Car("Mini Cooper", "FL", 1300, 30.40, 2.45, "no damage", emptyMap)
+// cars.push(car)
 
-cars[0].AddReserve("2024-03-03", "2024-03-03", "11:20", "14:02", "username")
+// cars[0].AddReserve("2024-03-03", "2024-03-03", "11:20", "14:02", "username")
 
-console.log(cars[0])
-let temp = x.searchCarFromLocation(cars, "Texas")
+// console.log(cars[0])
+// let temp = x.searchCarFromLocation(cars, "Texas")
 //console.log(temp)
 
 
