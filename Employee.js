@@ -86,16 +86,6 @@ class Employee extends User{
         return carObj.GetAvail()
     }
 
-    //approving clients request online, client has to have an account 
-    //checking avail should be done before request gets here 
-    addReservation(startDate, endDate, startTime, endTime, clientUsername, carObj) {
-        carObj.AddReserve(startDate, endDate, startTime, endTime, clientUsername);
-    }
-
-    removeReservation(startDate, endDate, startTime, endTime, carObj) {
-        carObj.RemoveReserve(startDate, endDate, startTime, endTime);
-    }
-
     checkForClientAccount(CustomerArray, clientUsername) {
         for(let i = 0; i < CustomerArray.length; i++){
             if(CustomerArray[i].GetCustUsername() == clientUsername){

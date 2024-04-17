@@ -17,6 +17,16 @@ class User{
         }
         return avail_cars;
     }
+
+    //approving clients request online, client has to have an account 
+    //checking avail should be done before request gets here 
+    addReservation(startDate, endDate, startTime, endTime, clientUsername, carObj) {
+        carObj.AddReserve(startDate, endDate, startTime, endTime, clientUsername);
+    }
+
+    removeReservation(startDate, endDate, startTime, endTime, carObj) {
+        carObj.RemoveReserve(startDate, endDate, startTime, endTime);
+    }
 }
 
 module.exports = User;
