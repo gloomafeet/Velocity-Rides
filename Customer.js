@@ -8,9 +8,6 @@ class Customer extends User{
     }
 
     //Customer methods: rent car, view info, etc
-    GetCustUsername() {
-        return this.username;
-    }
 }
 
 module.exports = Customer;
