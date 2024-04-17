@@ -19,9 +19,7 @@ class Employee extends User{
         let carAtLocation = [];
         for(let i = 0; i < carArray.length; i++){
             let temp = carArray[i].GetInfo();
-            //console.log(temp[1])
             if(temp[1] == location){
-                //console.log(temp[1])
                 carAtLocation.push(carArray[i])
             }
         }
@@ -66,16 +64,6 @@ class Employee extends User{
     //view schedule of specific car 
     viewReservations(carObj) {
         return carObj.GetAvail()
-    }
-
-    //approving clients request online, client has to have an account 
-    //checking avail should be done before request gets here 
-    addReservation(startDate, endDate, startTime, endTime, clientUsername, carObj) {
-        carObj.AddReserve(startDate, endDate, startTime, endTime, clientUsername);
-    }
-
-    removeReservation(startDate, endDate, startTime, endTime, carObj) {
-        carObj.RemoveReserve(startDate, endDate, startTime, endTime);
     }
 
     checkForClientAccount(CustomerArray, clientUsername) {
