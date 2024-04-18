@@ -4,33 +4,6 @@ var Car = require('./Car.js')
 var Customer = require('./Customer.js')
 var User = require('./User.js')
 
-var express = require('express')
-var mongodb = require('mongodb')
-var app = express()
-var PORT = process.env.PORT || 2000
-
-let mongoURI = 'mongodb://localhost:27017/databasePlsWork'
-
-mongodb.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(client => {
-    console.log('Connected to MongoDB');
-    
-    // Further setup can be done here, such as defining routes, starting the server, etc.
-    
-    // Example: define a route
-    app.get('/', (req, res) => {
-      res.send('Hello World!');
-    });
-
-    // Start the server
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  })
-  .catch(error => {
-    console.error('Error connecting to MongoDB:', error);
-});
-
 //used to ensure all the usernames for all the accounts are unqiue 
 let usernames = [];
 
