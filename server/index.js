@@ -19,18 +19,19 @@ app.use(cors());
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 //app.listen(port, console.log(`Listening on port ${port}...`));
 app.listen(port, ()=>{
     console.log(`server is running on PORT ${port}`)
 
     const userSchema = new mongoose.Schema({
         name: String,
-        age: Number
+        username: String,
+        password: String
       });
 
     const User = mongoose.model('User', userSchema);
-    const newUser = new User({ name: 'John', age: 30 });
+    const newUser = new User({ name: 'AdminTest', username: 'admin1', password: 'pass123' });
     newUser.save()
       .then(() => {
         console.log('User saved successfully');
