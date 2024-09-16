@@ -1,104 +1,107 @@
-//just making this as a template change anything you want 
-
-//trying to import cars and employees class, not working 
-import Employee from './Employee'
-import Car from './Car'
-import Customer from './Customer'
-import User from './User'
-
-// var Employee = require('./Employee')
-// var Car = require('./Car')
-// var Customer = require('./Customer')
-// var User = require('./User')
+var Employee = require('./Employee.js')
+var Cars = require('./Car.js')
 
 class Admin extends Employee{
     constructor(username, password, name, location) {
         //constructor 
         super(username, password, name, location);
     }
-    addEmployee;
-    deleteEmployee;
-    editEmployeeLocation;
-    getAdminUsername;
-    addAdmin;
-    deleteAdmin;
-    editAdminUsername;
-    editAdminLocation;
-    editAdminsPassword;
-}
 
-Admin.prototype.addEmployee = function(employeeArray, username, password, location) {
-    employeeArray.push(Employee(username, password, location));
-    return employeeArray; //may not need
-}
+    editLocation(loco) {
+        this.location = loco;
+    }
 
-Admin.prototype.deleteEmployee = function(employeeArray, username) {
-    for(let i = 0; i < employeeArray.length; i++){
-        if(username.equals(employeeArray[i].getEmployeeUsername)){
-            delete employeeArray[i];
-        }
-    } 
-    return employeeArray; //may not need
-}
+    addEmployee(employeeArray, username, password, name, location) {
+        employeeArray.push(new Employee(username, password, name, location));
+    }
 
-Admin.prototype.editEmployeeLocation = function(employeeArray, username, location) {
-    for(let i = 0; i < employeeArray.length; i++){
-        if(username.equals(employeeArray[i].getEmployeeUsername)){
-            employeeArray[i].editEmployeeLocation(location);
-            break;
+    deleteEmployee(employeeArray, username) {
+        for(let i = 0; i < employeeArray.length; i++){
+            if(username == employeeArray[i].getUsername()){
+                employeeArray.splice(i, 1);
+            }
+        } 
+    }
+
+    getEmployee(employeeArray, username){
+        for(let i = 0; i < employeeArray.length; i++){
+            if(username == employeeArray[i].getUsername()){
+                return employeeArray[i];
+                break;
+            }
         }
     }
-    return employeeArray; //may not need
-}
 
-Admin.prototype.getAdminUsername = function() {
-    return this.username
-}
-
-Admin.prototype.addAdmin = function(adminArray, username, password, location) {
-    adminArray.push(Admin(username, password, location));
-    return adminArray; //may not need
-}
-
-Admin.prototype.deleteAdmin = function(adminArray, username) {
-    for(let i = 0; i < adminArray.length; i++){
-        if(username.equals(adminArray[i].getAdminUsername)){
-            delete adminArray[i];
-        }
-    } 
-    return adminArray; //may not need
-}
-
-Admin.prototype.editAdminUsername = function(adminArray, oldUsername, newUsername) {
-    for(let i = 0; i < adminArray.length; i++){
-        if(oldUsername.equals(adminArray[i].getAdminUsername)){
-            adminArray[i].username = newUsername;
-            break;
+    editEmployeeLocation(employeeArray, username, location) {
+        for(let i = 0; i < employeeArray.length; i++){
+            if(username == employeeArray[i].getUsername()){
+                employeeArray[i].editEmployeeLocation(location);
+                break;
+            }
         }
     }
-    return employeeArray; //may not need
-}
 
-Admin.prototype.editAdminPassword = function(adminArray, username, password) {
-    for(let i = 0; i < adminArray.length; i++){
-        if(username.equals(adminArray[i].getAdminUsername)){
-            adminArray[i].password = password;
-            break;
+    addAdmin(adminArray, username, password, name, location) {
+        adminArray.push(new Admin(username, password, name, location));
+    }
+
+    deleteAdmin(adminArray, username) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(username == adminArray[i].getUsername()){
+                adminArray.splice(i, 1);
+            }
+        } 
+    }
+
+    editAdminUsername(adminArray, oldUsername, newUsername) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(oldUsername == adminArray[i].getUsername()){
+                adminArray[i].editUsername(newUsername);
+                break;
+            }
         }
     }
-    return employeeArray; //may not need
-}
 
-Admin.prototype.editAdminLocation = function(username, location) {
-    for(let i = 0; i < adminArray.length; i++){
-        if(username.equals(adminArray[i].getAdminUsername)){
-            adminArray[i].location = location;
-            break;
+    editAdminPassword(adminArray, username, password) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(username == adminArray[i].getUsername()){
+                adminArray[i].editPassword(password);
+                break;
+            }
         }
     }
-    return employeeArray; //may not need
+
+    editAdminName(adminArray, username, name) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(username == adminArray[i].getUsername()){
+                adminArray[i].editName(name);
+                break;
+            }
+        }
+    }
+
+    editAdminLocation(adminArray, username, location) {
+        for(let i = 0; i < adminArray.length; i++){
+            if(username == adminArray[i].getUsername()){
+                adminArray[i].editLocation(location);
+                break;
+            }
+        }
+    }
+
+    addCar(carArray, type, location, mileage, dayCost, mileCost, status, availability){
+        carArray.push(new Cars(type, location, mileage, dayCost, mileCost, status, availability));
+    }
+
+    deleteCar(carArray, type, location, mileage, dayCost, mileCost, status, availability) {
+        let info = [type, location, mileage, dayCost, mileCost, status, availability];
+        for (let i = 0; i < carArray.length; i++){
+            if(JSON.stringify(info) === JSON.stringify(carArray[i].GetInfo())){
+                carArray.splice(i, 1);
+                break;
+            }
+        }
+    }
 }
 
-
-
-module.export = Admin;
+module.exports = Admin;
